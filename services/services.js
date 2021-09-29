@@ -2,6 +2,7 @@ import axios from "axios";
 
 const apiUrl ='https://api.themoviedb.org/3';
 const apiKey ='api_key=935665956143eb69d59d40362bab7a4d';
+
 /**
  * 
  * @returns a list of popular movies
