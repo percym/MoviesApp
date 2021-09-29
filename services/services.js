@@ -25,3 +25,15 @@ export const getUpcomingMovies = async()=>{
     return resp.data.results;
     
   }
+
+  /**
+ * 
+ * @returns a list of popular tvseries
+ */
+export const getPopularTv = async()=>{
+    const resp = await axios.get(
+            `${apiUrl}/tv/popular?${apiKey}`
+            );
+    return resp.data.results;
+    
+  }
