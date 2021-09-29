@@ -10,7 +10,7 @@ import {SliderBox} from 'react-native-image-slider-box';
 
 const Home =()=>{
     const imageUrl = 'https://images.tmdb.org/t/p/w500';
-    const [moviesImages, setMoviesImages] = useState(['http://www.tiptoncommunications.com/components/com_easyblog/themes/wireframe/images/placeholder-image.png']);
+    const [moviesImages, setMoviesImages] = useState(['https://placeholder.com/']);
     const [error, setError] = useState(false);
   
   
