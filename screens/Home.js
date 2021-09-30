@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View , Dimensions, StyleSheet} from 'react-native';
 import axios from 'axios';
 import { useState } from 'react'; 
 import { setState } from 'expect';
@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { getPopularMovies, getUpcomingMovies } from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
 
-
+    const dimensions = Dimensions.get('screen');
 const Home =()=>{
     const imageUrl = 'https://images.tmdb.org/t/p/w500';
     const [moviesImages, setMoviesImages] = useState(['https://placeholder.com/']);
@@ -34,13 +34,27 @@ const Home =()=>{
 
   
     return(
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <View style={styles.sliderContainer}>
        
-        <SliderBox images={moviesImages}></SliderBox>
+        <SliderBox 
+          images={moviesImages} 
+          autoplay={true} circleLoop={true} 
+          dotStyle={styles.sliderStyle}
+          sliderBoxHeight={dimensions.height/1.5}></SliderBox>
          </View>
     );
    
 }
+const styles = StyleSheet.create({
+    sliderContainer:{
+      flex:1,
+      justifyContent:'center',
+      alignItems:'center',
+    },
+    sliderStyle:{
+        height:0
+    }
+})
 
     export default Home;
 
