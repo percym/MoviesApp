@@ -19,8 +19,9 @@ const Home =()=>{
 
             const moviesImagesArray = [];
             
-            console.log('https://images.tmdb.org/t/p/w500'+ movie.poster_path);
+           
             movies.forEach(movie => {
+                console.log('https://images.tmdb.org/t/p/w500'+ movie.poster_path);    
             moviesImagesArray.push('https://images.tmdb.org/t/p/w500'+ movie.poster_path);
             setMoviesImages(moviesImagesArray);
         })
