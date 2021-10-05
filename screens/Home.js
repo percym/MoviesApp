@@ -1,11 +1,12 @@
 import React from 'react';
-import {Text, View, Dimensions, StyleSheet, FlatList} from 'react-native';
+import {Text, View, Dimensions, StyleSheet} from 'react-native';
 import axios from 'axios';
 import {useState} from 'react';
 import {setState} from 'expect';
 import {useEffect} from 'react';
 import {getPopularMovies, getUpcomingMovies} from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
+import List from '../components/List'
 
 const dimensions = Dimensions.get('screen');
 const Home = () => {
@@ -49,14 +50,9 @@ const Home = () => {
           sliderBoxHeight={dimensions.height / 1.5}></SliderBox>
       </View>
       <View style={styles.carousel}>
-        <FlatList 
-            data={popularMovies} 
-            horizontal={true}
-            renderItem={({item})=> <Text>{item.title}</Text>}>
-
-          </FlatList >
+        <List title="tyebo mama" content={popularMovies}>
+        </List>
       </View>
-
     </React.Fragment>
   );
 };
