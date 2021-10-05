@@ -50,7 +50,7 @@ const Home = () => {
           sliderBoxHeight={dimensions.height / 1.5}></SliderBox>
       </View>
       <View style={styles.carousel}>
-        <List title="tyebo mama" content={popularMovies}>
+        <List title="Popular movies" content={popularMovies}>
         </List>
       </View>
     </React.Fragment>

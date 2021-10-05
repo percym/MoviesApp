@@ -1,7 +1,7 @@
 import React from "react";
 import { PureComponent } from "react";
 import {TouchableOpacity,StyleSheet, Image} from 'react-native';
-
+const placeholderImage = require('../assets/images/placeholderimage.jpg')
 class Card extends PureComponent{
     
    
@@ -10,8 +10,10 @@ class Card extends PureComponent{
 
         return(
             <TouchableOpacity style={styles.container}>
-                    <Image style={styles.image} 
-                    source={{uri:'https://images.tmdb.org/t/p/w500'+item.poster_path}}/>
+                    <Image style={styles.image}
+                    resizeMode="cover" 
+                    source={
+                        item.poster_path?{uri:'https://images.tmdb.org/t/p/w500'+item.poster_path}: placeholderImage}/>
             </TouchableOpacity>
 
         );
