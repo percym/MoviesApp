@@ -31,13 +31,14 @@ const Home = () => {
       .catch(err => {
         setError(err);
       });
-  }, []);
+ 
 
   getPopularMovies().then(movies=>{
       setPopularMovies(movies);
   }).catch(err=>{
       setError(err);
   })
+}, []);
 
   return (
     <React.Fragment>
