@@ -4,7 +4,7 @@ import axios from 'axios';
 import {useState} from 'react';
 import {setState} from 'expect';
 import {useEffect} from 'react';
-import {getPopularMovies, getUpcomingMovies} from '../services/services';
+import {getPopularMovies, getPopularTv, getUpcomingMovies} from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
 import List from '../components/List'
 
@@ -13,6 +13,7 @@ const Home = () => {
   const imageUrl = 'https://images.tmdb.org/t/p/w500';
   const [moviesImages, setMoviesImages] = useState('');
   const [popularMovies, setPopularMovies] = useState('');
+  const [popularTv, setPopularTv] = useState('');
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -37,7 +38,15 @@ const Home = () => {
       setPopularMovies(movies);
   }).catch(err=>{
       setError(err);
-  })
+  });
+
+  getPopularTv().then(tv=>{
+    setPopularTv(tv);
+}).catch(err=>{
+    setError(err);
+});
+
+
 }, []);
 
   return (
@@ -52,6 +61,10 @@ const Home = () => {
       </View>
       <View style={styles.carousel}>
         <List title="Popular movies" content={popularMovies}>
+        </List>
+      </View>
+      <View style={styles.carousel}>
+        <List title="Popular tv shows" content={popularTv}>
         </List>
       </View>
     </React.Fragment>
