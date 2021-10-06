@@ -27,7 +27,7 @@ export const getUpcomingMovies = async()=>{
     
   }
 
-  /**
+/**
  * 
  * @returns a list of popular tvseries
  */
@@ -38,3 +38,17 @@ export const getPopularTv = async()=>{
     return resp.data.results;
     
   }
+
+
+  /**
+ * 
+ * @returns a list of popular family movies
+ */
+export const getFamilyMovies = async()=>{
+        const resp = await axios.get(
+                `${apiUrl}/discover/movie?${apiKey}&with_genres=10751`
+                );
+        return resp.data.results;
+        
+      }
+    
