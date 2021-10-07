@@ -9,6 +9,7 @@ import {
   getPopularMovies,
   getPopularTv,
   getUpcomingMovies,
+  getDocumentaries,
 } from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
 import List from '../components/List';
@@ -16,10 +17,11 @@ import List from '../components/List';
 const dimensions = Dimensions.get('screen');
 const Home = () => {
   const imageUrl = 'https://images.tmdb.org/t/p/w500';
-  const [moviesImages, setMoviesImages] = useState('');
-  const [popularMovies, setPopularMovies] = useState('');
-  const [popularTv, setPopularTv] = useState('');
-  const [familyMovies, setFamilyMovies] = useState('');
+  const [moviesImages, setMoviesImages] = useState();
+  const [popularMovies, setPopularMovies] = useState();
+  const [popularTv, setPopularTv] = useState();
+  const [familyMovies, setFamilyMovies] = useState();
+  const [documentaries, setDocumentaries] = useState();
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -62,12 +64,23 @@ const Home = () => {
       .catch(err => {
         setError(err);
       });
+
+      getDocumentaries()
+      .then(docs => {
+        setDocumentaries(docs);
+      })
+      .catch(err => {
+        setError(err);
+      });
+
+      
   }, []);
 
   return (
     <React.Fragment>
       <ScrollView>
-        <View style={styles.sliderContainer}>
+        {!moviesImages && (
+          <View style={styles.sliderContainer}>
           <SliderBox
             images={moviesImages}
             autoplay={true}
@@ -75,15 +88,28 @@ const Home = () => {
             dotStyle={styles.sliderStyle}
             sliderBoxHeight={dimensions.height / 1.5}></SliderBox>
         </View>
-        <View style={styles.carousel}>
-          <List title="Popular movies" content={popularMovies}></List>
-        </View>
-        <View style={styles.carousel}>
+        )}
+        {popularMovies && (
+           <View style={styles.carousel}>
+           <List title="Popular movies" content={popularMovies}></List>
+         </View>
+        )}
+        {popularTv && (
+          <View style={styles.carousel}>
           <List title="Popular tv shows" content={popularTv}></List>
         </View>
-        <View style={styles.carousel}>
-          <List title="Family movies" content={familyMovies}></List>
-        </View>
+        )}
+        {familyMovies && (
+            <View style={styles.carousel}>
+            <List title="Family movies" content={familyMovies}></List>
+          </View>
+        )}
+        {documentaries && (
+            <View style={styles.carousel}>
+            <List title="Documentaries" content={documentaries}></List>
+          </View>
+        )}
+      
       </ScrollView>
     </React.Fragment>
   );
