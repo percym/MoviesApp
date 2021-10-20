@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Dimensions, StyleSheet, ScrollView} from 'react-native';
+import {Text, View, Dimensions, StyleSheet, ScrollView, ActivityIndicator} from 'react-native';
 import axios from 'axios';
 import {useState} from 'react';
 import {setState} from 'expect';
@@ -23,6 +23,7 @@ const Home = () => {
   const [familyMovies, setFamilyMovies] = useState();
   const [documentaries, setDocumentaries] = useState();
   const [error, setError] = useState(false);
+  const [loaded , setLoaded] = useState(false);
 
   useEffect(() => {
     getUpcomingMovies()
@@ -72,45 +73,55 @@ const Home = () => {
       .catch(err => {
         setError(err);
       });
-
+      checkLoaded()
       
   }, []);
 
+  checkLoaded =()=>{
+    if(!error){
+      setLoaded(true);
+    }
+  }
+
   return (
+ 
     <React.Fragment>
+      {loaded && 
       <ScrollView>
-        {!moviesImages && (
-          <View style={styles.sliderContainer}>
-          <SliderBox
-            images={moviesImages}
-            autoplay={true}
-            circleLoop={true}
-            dotStyle={styles.sliderStyle}
-            sliderBoxHeight={dimensions.height / 1.5}></SliderBox>
-        </View>
-        )}
-        {popularMovies && (
-           <View style={styles.carousel}>
-           <List title="Popular movies" content={popularMovies}></List>
-         </View>
-        )}
-        {popularTv && (
+      {moviesImages && (
+        <View style={styles.sliderContainer}>
+        <SliderBox
+          images={moviesImages}
+          autoplay={true}
+          circleLoop={true}
+          dotStyle={styles.sliderStyle}
+          sliderBoxHeight={dimensions.height / 1.5}></SliderBox>
+      </View>
+      )}
+      {popularMovies && (
+         <View style={styles.carousel}>
+         <List title="Popular movies" content={popularMovies}></List>
+       </View>
+      )}
+      {popularTv && (
+        <View style={styles.carousel}>
+        <List title="Popular tv shows" content={popularTv}></List>
+      </View>
+      )}
+      {familyMovies && (
           <View style={styles.carousel}>
-          <List title="Popular tv shows" content={popularTv}></List>
+          <List title="Family movies" content={familyMovies}></List>
         </View>
-        )}
-        {familyMovies && (
-            <View style={styles.carousel}>
-            <List title="Family movies" content={familyMovies}></List>
-          </View>
-        )}
-        {documentaries && (
-            <View style={styles.carousel}>
-            <List title="Documentaries" content={documentaries}></List>
-          </View>
-        )}
+      )}
+      {documentaries && (
+          <View style={styles.carousel}>
+          <List title="Documentaries" content={documentaries}></List>
+        </View>
+      )}
+    
+    </ScrollView>}
       
-      </ScrollView>
+    {!loaded && <ActivityIndicator /> }
     </React.Fragment>
   );
 };
