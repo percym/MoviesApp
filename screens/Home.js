@@ -13,6 +13,7 @@ import {
 } from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
 import List from '../components/List';
+import Error from '../components/Error'
 
 const dimensions = Dimensions.get('screen');
 const Home = () => {
@@ -122,6 +123,7 @@ const Home = () => {
     </ScrollView>}
       
     {!loaded && <ActivityIndicator /> }
+    {error && <Error />}
     </React.Fragment>
   );
 };
