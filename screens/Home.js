@@ -13,10 +13,10 @@ import {
 } from '../services/services';
 import {SliderBox} from 'react-native-image-slider-box';
 import List from '../components/List';
-import Error from '../components/Error'
+import Error from '../components/Error';
 
 const dimensions = Dimensions.get('screen');
-const Home = () => {
+const Home = ({navigation}) => {
   const imageUrl = 'https://images.tmdb.org/t/p/w500';
   const [moviesImages, setMoviesImages] = useState();
   const [popularMovies, setPopularMovies] = useState();
@@ -101,26 +101,27 @@ const Home = () => {
       )}
       {popularMovies && (
          <View style={styles.carousel}>
-         <List title="Popular movies" content={popularMovies}></List>
+         <List  navigation={navigation} title="Popular movies" content={popularMovies}></List>
        </View>
       )}
       {popularTv && (
         <View style={styles.carousel}>
-        <List title="Popular tv shows" content={popularTv}></List>
+        <List navigation={navigation} title="Popular tv shows" content={popularTv}></List>
       </View>
       )}
       {familyMovies && (
           <View style={styles.carousel}>
-          <List title="Family movies" content={familyMovies}></List>
+          <List navigation={navigation} title="Family movies" content={familyMovies}></List>
         </View>
       )}
       {documentaries && (
           <View style={styles.carousel}>
-          <List title="Documentaries" content={documentaries}></List>
+          <List navigation={navigation} title="Documentaries" content={documentaries}></List>
         </View>
       )}
     
     </ScrollView>}
+    {console.log('loaded final state => ', loaded)}
       
     {!loaded && <ActivityIndicator /> }
     {error && <Error />}
