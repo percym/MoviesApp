@@ -63,4 +63,15 @@ export const getFamilyMovies = async()=>{
         return resp.data.results;
         
       }      
+
+/**
+ * 
+ * @returns a list of popular documentaries
+ */
+   export const getMovie = async(id)=>{
+        const resp = await axios.get(
+                `${apiUrl}/movie/${id}?${apiKey}`
+                );
+        return resp.data;
+}      
     

@@ -125,6 +125,7 @@ const Home = ({navigation}) => {
       
     {!loaded && <ActivityIndicator /> }
     {error && <Error />}
+    {console.log('loaded error final state => ', error)}
     </React.Fragment>
   );
 };
