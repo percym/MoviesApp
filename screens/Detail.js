@@ -1,9 +1,14 @@
 import React, { Fragment ,  useEffect, useState} from 'react';
-import { ScrollView, Text,Image, StyleSheet } from 'react-native';
+import { ScrollView, Text,Image, StyleSheet,Dimensions, ActivityIndicator } from 'react-native';
 import { getMovie } from '../services/services';
+    
+    const placeholderImage = require('../assets/images/placeholderimage.jpg');
+    const height = Dimensions.get('screen').height;
+    const width = Dimensions.get('screen').width;
 
 const Detail = ({route, navigation}) => {
-    const movieId = route.params.movieDetail.id;
+    
+    const movieId = route.params.movieId;
     const [loaded, setLoaded] = useState();
     const [movieDetail, setMovieDetail] = useState();
 
@@ -21,11 +26,13 @@ const Detail = ({route, navigation}) => {
     return (
         <Fragment>{loaded && (
              <ScrollView>
-              <Image />   
-                <Text>{movieDetail.title + ' ' +movieId}</Text>
+               <Image style={styles.image}
+                     resizeMode="cover" 
+                     source={
+                        movieDetail.poster_path?{uri:'https://images.tmdb.org/t/p/w500'+ movieDetail.poster_path}: placeholderImage}/>
            </ScrollView>
            )}
-           
+            {!loaded && <ActivityIndicator /> }
            
         </Fragment>        
     );
@@ -37,9 +44,8 @@ const styles=StyleSheet.create({
 
     },
     image:{
-        height:200,
-        width:120,
-        borderRadius:20
+        height: height /2,
+       
     }
 })
 export default Detail;

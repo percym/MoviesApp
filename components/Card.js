@@ -14,10 +14,10 @@ class Card extends PureComponent{
         const {navigation,item}= this.props;
 
         return(
-            <TouchableOpacity  onPress={()=>navigation.navigate('Detail',{movieDetail:item})} style={styles.container}>
+            <TouchableOpacity  onPress={()=>navigation.navigate('Detail',{movieId:item.id})} style={styles.container}>
                     <Image style={styles.image}
-                    resizeMode="cover" 
-                    source={
+                     resizeMode="cover" 
+                     source={
                         item.poster_path?{uri:'https://images.tmdb.org/t/p/w500'+item.poster_path}: placeholderImage}/>
             </TouchableOpacity>
 
