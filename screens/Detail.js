@@ -15,6 +15,7 @@ import {getMovie} from '../services/services';
 import StarRating from 'react-native-star-rating';
 import dateFormat, {masks} from 'dateformat';
 import PlayButton from '../components/PlayButton';
+import Video from '../components/Video';
 
 const placeholderImage = require('../assets/images/placeholderimage.jpg');
 const height = Dimensions.get('screen').height;
@@ -88,9 +89,10 @@ const Detail = ({route, navigation}) => {
           </ScrollView>
           <Modal animationType="slide" visible={modalVisible}>
             <View style={styles.videoModal}>
-              <Pressable onPress={() => videoShown()}>
+              {/* <Pressable onPress={() => videoShown()}>
                   <Text>Hide Modal</Text>
-              </Pressable>
+              </Pressable> */}
+             <Video onClose={()=>videoShown}/>
             </View>
           </Modal>
         </View>
