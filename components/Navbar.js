@@ -23,7 +23,7 @@ class Navbar extends PureComponent {
   render() {
     const {navigation, main} = this.props;
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.container}>
         {main ? (
           <View style={styles.mainNav}>
             <Image
@@ -61,11 +61,13 @@ const styles = StyleSheet.create({
     height: 50,
   },
   mainNav: {
-    flex: 1,
     justifyContent: 'space-between',
     flexDirection: 'row',
-    padding: 10,
-    alignItems: 'center',
+    padding:5,
+    alignContent:'center'
   },
+    container: {
+     
+      }
 });
 export default Navbar;

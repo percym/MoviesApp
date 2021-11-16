@@ -88,7 +88,7 @@ const Home = ({navigation}) => {
  
     <React.Fragment>
       {loaded && 
-      <ScrollView>
+      <ScrollView >
       {moviesImages && (
         <View style={styles.sliderContainer}>
         <SliderBox
