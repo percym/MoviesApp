@@ -74,4 +74,19 @@ export const getFamilyMovies = async()=>{
                 );
         return resp.data;
 }      
+
+  /**
+ * 
+ * @returns a search for movie or tv based on query
+ */
+   export const searchMovieAndTv = async(query, type)=>{
+
+
+        const resp = await axios.get(
+                `${apiUrl}/search/${type}?${apiKey}&query=${query}`
+                );
+        return resp.data.results;
+        
+      }      
+
     
